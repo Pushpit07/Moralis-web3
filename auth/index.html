@@ -1,0 +1,34 @@
+<!--
+	1) AUTHENTICATE WITH METAMASK
+	2) ADD USER TO DB
+	3) ADD MORE DATA TO THE USER PROFILE
+-->
+
+<html>
+	<head>
+		<title>Moralis auth with Metamask</title>
+
+		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+		<script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+	</head>
+
+	<body>
+		<button onclick="login()">Login with Metamask</button>
+
+		<script>
+			Moralis.initialize("3xatxJlERvqXGgvdfUil4Y4U9SDGDSk2Uoqyf3BF"); // Application id from moralis.io
+			Moralis.serverURL = "https://zfl38re0wbqz.usemoralis.com:2053/server"; // Server url from moralis.io
+
+			async function login() {
+				console.log("Login clicked");
+				var user = await Moralis.Web3.authenticate();
+				if (user) {
+					console.log(user);
+					user.set("nickname", "VITALIK");
+					user.set("fav_color", "blue");
+					user.save();
+				}
+			}
+		</script>
+	</body>
+</html>
