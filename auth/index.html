@@ -16,8 +16,8 @@
 		<button onclick="login()">Login with Metamask</button>
 
 		<script>
-			Moralis.initialize("3xatxJlERvqXGgvdfUil4Y4U9SDGDSk2Uoqyf3BF"); // Application id from moralis.io
-			Moralis.serverURL = "https://zfl38re0wbqz.usemoralis.com:2053/server"; // Server url from moralis.io
+			Moralis.initialize("5c9o59wObRS6ih2ltNoI9qrljGKAcTs4pAifrSok"); // Application id from moralis.io
+			Moralis.serverURL = "https://kvnw4swkltxh.usemoralis.com:2053/server"; // Server url from moralis.io
 
 			async function login() {
 				console.log("Login clicked");
@@ -29,6 +29,13 @@
 					user.save();
 				}
 			}
+
+			Moralis.Web3.onAccountsChanged(async ([account]) => {
+				console.log("Account changed:", account);
+				alert("Do you want to merge this account with your Moralis account?");
+				var user = Moralis.Web3.link(account);
+				console.log(user);
+			});
 		</script>
 	</body>
 </html>
